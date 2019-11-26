@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+h1 {
+  padding-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.app {
+  width: 700px;
+  margin: 0 auto;
+}
+.label {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+}
+.opera {
+  padding: 20px 0;
+  text-align: center;
+}
+.col-form-label {
+  text-align: right;
+  width: 100px;
+  padding-top: 0;
+  line-height: 32px;
+}
+
+.select-file {
+  display: none;
+}
+.out-process , .view-files{
+  height: 400px;
+  overflow-y: auto;
+}
+.alert {
+  word-break: break-word;
+}
+
+.total {
+  font-size: 14px;
+  color: #666;
+}
+.btn-opera {
+  padding-top: 30px;
+  /* text-align: center; */
+}

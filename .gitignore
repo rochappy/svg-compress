@@ -1,0 +1,8 @@
+node_modules
+app.min.js
+js/app.min.js
+css/main.min.css
+dist
+svgCompress*
+package-lock.json
+.DS_Store

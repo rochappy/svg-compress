@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+  </head>
+  <body>
+    <div class="app">
+      <h1>svg 压缩</h1>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">
+            <select class="form-control select-type">
+              <option value="dir">目录压缩</option>
+              <option value="file">文件压缩</option>
+            </select>
+          </label>
+          <div class="col-sm-10">
+            <div class="form-row select-file">
+              <div class="col">
+                <button class="btn btn-success btn-select-file">选择文件</button>
+                <button type="button" class="btn btn-view-file btn-link">查看已选择文件</button>
+              </div>
+            </div>
+            <div class="form-row select-dir">
+              <div class="col-7">
+                <input type="text" readonly class="form-control input-select-dir">
+              </div>
+              <div class="col select-dir">
+                <button class="btn btn-info btn-select-dir">选择输入目录</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">导出目录</label>
+          <div class="col-sm-10">
+            <div class="form-row">
+              <div class="col-7">
+                <input type="text" readonly class="form-control input-output">
+              </div>
+              <div class="col">
+                <button class="btn btn-info btn-output-file">选择导出目录</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="" class="col-sm-2 col-form-label"></label>
+          <div class="col-sm-10 btn-opera">
+            <button class="btn btn-primary btn-lg btn-save">压缩导出</button>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-output" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            请选择文件或导出目录
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-output-process" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">导出进度 <span class="total"></span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body out-process"> </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-view-files" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">查看已选文件列表</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body view-files"> </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
