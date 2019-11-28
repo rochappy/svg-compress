@@ -20,8 +20,7 @@ copyFiles.map((item) => {
   fs.copy(path.join(__dirname, `node_modules/${item.from}${item.name}`), path.join(__dirname, `${item.to}${item.name}`));
 });
 
-delete pkg.scripts
-delete pkg.devDependencies
-console.log(pkg);
+delete pkg.scripts;
+delete pkg.devDependencies;
 
 fs.writeFile('./package-copy.json', JSON.stringify(pkg, null, '  '));
