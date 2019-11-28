@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
+const pkg = require('./package.json');
 
 const copyFiles = [{
   from: 'jquery/dist/',
@@ -18,3 +19,9 @@ const copyFiles = [{
 copyFiles.map((item) => {
   fs.copy(path.join(__dirname, `node_modules/${item.from}${item.name}`), path.join(__dirname, `${item.to}${item.name}`));
 });
+
+delete pkg.scripts
+delete pkg.devDependencies
+console.log(pkg);
+
+fs.writeFile('./package-copy.json', JSON.stringify(pkg, null, '  '));

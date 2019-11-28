@@ -6,6 +6,7 @@ const { exec, execSync, spawn, spawnSync } = require('child_process');
 const config = require('./config');
 const fs = require('fs-extra');
 const glob = require('glob');
+const svg2html = require('svg2html')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -85,6 +86,11 @@ ipcMain.on('outsvg', (event, data) => {
   if (data.type == 'file') {
     handlerSvgs(event,data.content, data.outputDir);
   } else {
+    svg2html.run({
+      inDir: data.content[0],
+      outDir: data.outputDir[0],
+      rmAttr: 'opacity|fill',
+    });
     globPromise(`${data.content[0]}/**/*.svg`).then((svgs) => {
       handlerSvgs(event, svgs, data.outputDir);
     });
