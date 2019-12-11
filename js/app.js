@@ -22,6 +22,7 @@ const svgCompress = {
     content: '',
     outputDir: [`${os.homedir()}/Downloads/svgCompress`]
   },
+  inDirs: [],
   init() {
     this.initIpc();
     this.initHtml();
@@ -48,7 +49,10 @@ const svgCompress = {
         this.$inputOutputDir.val(path);
         this.data.outputDir = path;
       }
+
+      this.inDirs.push({ ...this.data });
     });
+
     ipcRenderer.on('outProcess', (e, data) => {
       $('#modal-output-process').modal();
       $('.out-process').append(`<div class="alert alert-primary">${data.file}</div>`);
@@ -113,13 +117,14 @@ const svgCompress = {
         $('#modal-view-files').find('.modal-body').html(`<div class="alert alert-primary list">暂无数据</div>`);
       }
     });
+
     this.$btnSave.on('click', () => {
 
       if (!this.data.content.length) {
         $('#modal-output').modal();
         return;
       }
-      ipcRenderer.send('outsvg', this.data);
+      ipcRenderer.send('outsvg', this.inDirs);
     });
 
     this.$modalOutputProcess.on('hide.bs.modal', ()=> {
