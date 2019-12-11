@@ -8,18 +8,18 @@ const { spawn } = require('child_process');
 let workerProcess
 const jsFiles = ['./js/app.js', 'main.js'];
 
-process.stdout.on('data', (data) => {
-  console.log(data);
-});
-
-process.on('close', (code) => {
-  console.log(`子进程退出 ${code}`);
-});
-
 const start = async (st) => {
   workerProcess = spawn('npm', ['start'], {
     stdio: 'inherit'
   })
+
+  workerProcess.on('data', (data) => {
+    console.log(data);
+  });
+
+  workerProcess.on('close', (code) => {
+    console.log(`子进程退出 ${code}`);
+  });
 }
 
 const stop = async () => {
@@ -39,7 +39,7 @@ const compile = async (vinylFile) => {
     }))
     .pipe(dest('./'));
 
-  if (vinylFile.relative.includes('main.js')) {
+  if (vinylFile.relative && vinylFile.relative.includes('main.js')) {
     restart()
   }
 
