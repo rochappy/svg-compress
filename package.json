@@ -4,11 +4,11 @@
   "main": "main.min.js",
   "scripts": {
     "preinstall": "ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/",
-    "install": "node build.js",
+    "bootstrap": "node build.js",
+    "install": "npm run bootstrap",
     "start": "electron .",
-    "uglify": "uglifyjs js/app.js -o js/app.min.js && uglifyjs main.js -o main.min.js",
     "download": "ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-download --version=7.1.2",
-    "pack": "npm run uglify && rm -rf dist main.js js/app.js build.js && cp package-copy.json package.json && rm package-copy.json && electron-builder --mac"
+    "pack": "npm run bootstrap && gulp build && rm -rf dist main.js js/app.js build.js rm gulpfile.js && cp package-copy.json package.json && rm package-copy.json && electron-builder --mac"
   },
   "build": {
     "appId": "org.rochappy.svg-compress",
@@ -26,15 +26,20 @@
   "dependencies": {
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
-    "svg2html": "^1.0.9",
+    "svg2html": "^1.1.0",
     "svgo": "^1.3.2"
   },
   "devDependencies": {
     "bootstrap": "4.4.0",
     "electron": "7.1.2",
     "electron-builder": "22.1.0",
+    "fancy-log": "^1.3.3",
+    "gulp": "^4.0.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglify-es": "^2.0.0",
+    "gulp-watch": "^5.0.1",
     "jquery": "3.4.1",
-    "popper.js": "1.14.7",
-    "uglify-es": "3.3.9"
+    "popper.js": "1.14.7"
   }
 }

@@ -1,7 +1,8 @@
 node_modules
 main.min.js
-js/app.min.js
+app.min.js
 css/main.min.css
+package-copy.json
 dist
 svgCompress*
 package-lock.json

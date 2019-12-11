@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, dialog} = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell} = require('electron');
 const path = require('path');
 const Svgo = require('svgo');
 const { exec, execSync, spawn, spawnSync } = require('child_process');
@@ -80,6 +80,11 @@ ipcMain.on('open-dialog', function (event, opts) {
   dialog.showOpenDialog(opts).then((result) => {
     event.sender.send('selectedItem', result.filePaths);
   });
+});
+
+ipcMain.on('open-dir', function (event, path) {
+  const [openDir] = path
+  shell.showItemInFolder(openDir);
 });
 
 ipcMain.on('outsvg', (event, data) => {

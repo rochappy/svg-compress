@@ -12,6 +12,8 @@ const svgCompress = {
   $rowSelectDir: $('.select-dir'),
   $inputSelectDir: $('.input-select-dir'),
   $btnViewFile: $('.btn-view-file'),
+  $modalOutputProcess: $('#modal-output-process'),
+  $btnOpenOutdir: $('.btn-open-outdir'),
   curSelectType: 'dir',
   curDialogSelect: 'select_dir',
   outModalHtml: '',
@@ -120,9 +122,13 @@ const svgCompress = {
       ipcRenderer.send('outsvg', this.data);
     });
 
-    $('#modal-output-process').on('hide.bs.modal', ()=> {
+    this.$modalOutputProcess.on('hide.bs.modal', ()=> {
       this.outModalHtml = '';
       $('.out-process').html('');
+    });
+
+    this.$btnOpenOutdir.on('click', ()=> {
+      ipcRenderer.send('open-dir', this.data.outputDir);
     });
   }
 };
