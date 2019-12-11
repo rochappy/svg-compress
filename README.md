@@ -1,6 +1,4 @@
-# svg-compress
-
-<img src="/docs/logo.png" alt="svg-compress-logo" />
+<p align="center"><img width="50%" src="/docs/logo.png" alt="svg-compress-logo" /></p>
 
 ____
 
