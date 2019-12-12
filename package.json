@@ -1,6 +1,6 @@
 {
   "name": "svg-compress",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "main.min.js",
   "scripts": {
     "preinstall": "ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/",
