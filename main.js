@@ -59,7 +59,7 @@ function createWindow () {
   })
 
   mainWindow.loadFile('index.html')
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', function () {
     mainWindow = null
@@ -87,25 +87,23 @@ ipcMain.on('open-dir', function (event, path) {
   shell.showItemInFolder(openDir);
 });
 
-ipcMain.on('outsvg', (event, data) => {
-  const allSvg = [];
-  const [outDir] = data[data.length - 1].outputDir
-  data.map(async (item) => {
+ipcMain.on('outsvg', async(event, data) => {
+  const [outDir] = data[data.length - 1].outputDir;
+
+  const allSvgPromise = await Promise.all(data.map(async (item) => {
     if (item.type == 'file') {
-      handlerSvgs(event,item.content, item.outputDir);
-      allSvg.push(...item.content);
+      handlerSvgs(event, item.content, item.outputDir);
+      return item.content;
     } else {
       const svgs = await globPromise(`${item.content[0]}/**/*.svg`);
       handlerSvgs(event, svgs, item.outputDir);
-      allSvg.push(...svgs);
+      return svgs;
     }
-  });
-  console.log(allSvg);
-  
-  console.log(allSvg.join(','));
-  
+  }))
+  const allSvg = allSvgPromise.flat();
+
   svg2html.run({
-    inDir: allSvg.join(','),
+    inDir: allSvg,
     outDir,
     rmAttr: 'opacity|fill',
   });
